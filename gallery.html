@@ -1,252 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery &#x2014; Golden Soul Tattoo</title>
-  <meta name="description" content="Browse the tattoo portfolio of Golden Soul Tattoo. Work from all our artists.">
+  <title>Galería — Golden Soul Tattoo</title>
+  <meta name="description" content="Portfolio completo de Golden Soul Tattoo. Tatuajes únicos por artistas apasionados en Ciudad de México.">
   <link rel="canonical" href="https://goldensoultattoo.com/gallery.html">
-  <meta property="og:title" content="Gallery &#x2014; Golden Soul Tattoo">
+  <meta property="og:title" content="Galería — Golden Soul Tattoo">
+  <meta property="og:description" content="Portfolio completo de Golden Soul Tattoo. Tatuajes únicos por artistas apasionados en Ciudad de México.">
+  <meta property="og:image" content="https://goldensoultattoo.com/img/google_1.jpg">
   <meta property="og:url" content="https://goldensoultattoo.com/gallery.html">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    
     :root {
-      --black: #0a0a0a;
-      --charcoal: #141414;
+      --bg: #0a0800;
+      --bg2: #12100a;
       --gold: #C9A84C;
-      --white: #f5f5f0;
-      --dim: #888;
-      --border: rgba(255,255,255,0.07);
+      --gold-light: #E8C76A;
+      --gold-dim: rgba(201,168,76,0.15);
+      --white: #FDF8EE;
+      --dim: #9A8A6A;
+      --border: rgba(201,168,76,0.12);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--black);
+      background: var(--bg);
       color: var(--white);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      line-height: 1.6;
+      line-height: 1.7;
       overflow-x: hidden;
     }
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(10,10,10,0.92);
+      background: rgba(10,8,0,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.3rem; font-weight: 400;
-      letter-spacing: 0.1em; color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
       text-decoration: none;
+      letter-spacing: 0.05em;
     }
-    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--dim); text-decoration: none;
-      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 1px; background: var(--white); margin: 5px 0; transition: all 0.3s; }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
-    .mobile-menu {
-      display: none; position: fixed; top: 65px; left: 0; right: 0; z-index: 99;
-      background: var(--charcoal); padding: 24px 48px;
-      border-bottom: 1px solid var(--border);
+    .nav-links a:hover { color: var(--gold); }
+    .nav-hamburger { display: none; cursor: pointer; background: none; border: none; color: var(--gold); font-size: 1.5rem; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(10,8,0,0.98); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: block; }
     }
-    .mobile-menu.open { display: block; }
-    .mobile-menu a {
-      display: block; color: var(--white); text-decoration: none;
-      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 12px 0; border-bottom: 1px solid var(--border);
+    /* FLOATING BOOK BTN */
+    .float-book {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+      background: var(--gold); color: #0a0800;
+      padding: 0.8rem 1.5rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+      transition: background 0.2s, transform 0.2s;
     }
-    .book-float {
-      position: fixed; bottom: 32px; right: 32px; z-index: 200;
-      background: var(--gold); color: #000;
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-      text-decoration: none; padding: 14px 22px; border-radius: 2px;
-      box-shadow: 0 4px 24px rgba(201,168,76,0.35);
-      transition: transform 0.2s, box-shadow 0.2s;
+    .float-book:hover { background: var(--gold-light); transform: translateY(-2px); }
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
     }
-    .book-float:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.5); }
-    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400; line-height: 1.2;
+    }
+    h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem; }
+    /* GRID */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+    /* CARDS */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+    .card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+    .card-body { padding: 1.5rem; }
+    .card-body h3 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+    .card-body p { color: var(--dim); font-size: 0.85rem; }
+    .card-link {
+      display: inline-block; margin-top: 1rem;
+      color: var(--gold); font-size: 0.8rem; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+    }
+    .card-link:hover { color: var(--gold-light); }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; position: relative;
+      background-size: cover; background-position: center;
+      padding: 2rem;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,8,0,0.5) 0%, rgba(10,8,0,0.3) 50%, rgba(10,8,0,0.85) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--gold-light); font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .hero-rating {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(201,168,76,0.1); border: 1px solid var(--border);
+      padding: 0.5rem 1.2rem; border-radius: 50px; margin-bottom: 2rem;
+      font-size: 0.85rem; color: var(--gold);
+    }
+    .btn-primary {
+      display: inline-block; padding: 0.9rem 2.5rem;
+      background: var(--gold); color: #0a0800;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline {
+      display: inline-block; padding: 0.9rem 2.5rem;
+      background: transparent; color: var(--gold);
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid var(--gold);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--gold-dim); }
+    /* GALLERY MASONRY */
+    .masonry {
+      columns: 3; column-gap: 1rem;
+    }
+    .masonry-item {
+      break-inside: avoid; margin-bottom: 1rem;
+      border: 1px solid var(--border); border-radius: 2px; overflow: hidden;
+    }
+    .masonry-item img { width: 100%; display: block; }
+    @media (max-width: 900px) { .masonry { columns: 2; } }
+    @media (max-width: 500px) { .masonry { columns: 1; } }
+    /* REVIEWS */
+    .review-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 2px; padding: 2rem;
+    }
+    .review-stars { color: var(--gold); margin-bottom: 0.8rem; letter-spacing: 0.1em; }
+    .review-text { color: var(--white); font-style: italic; margin-bottom: 1rem; }
+    .review-author { color: var(--dim); font-size: 0.85rem; }
+    /* LOCATION */
+    .location-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    }
+    @media (max-width: 768px) { .location-grid { grid-template-columns: 1fr; } }
+    .location-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+    .location-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .location-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.3rem; }
+    /* BOOKING FORM */
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.6rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border);
+      color: var(--white); padding: 0.8rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s; border-radius: 1px;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    /* ARTIST PICKER */
+    .artist-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    @media (max-width: 768px) { .artist-picker { grid-template-columns: repeat(2, 1fr); } }
+    .artist-pick-item { position: relative; }
+    .artist-pick-item input[type=radio] { position: absolute; opacity: 0; }
+    .artist-pick-item label {
+      display: block; cursor: pointer; border: 2px solid var(--border);
+      border-radius: 2px; overflow: hidden; transition: border-color 0.2s;
+    }
+    .artist-pick-item input[type=radio]:checked + label { border-color: var(--gold); }
+    .artist-pick-item label img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .artist-pick-item label span { display: block; padding: 0.5rem; font-size: 0.8rem; text-align: center; color: var(--dim); }
+    /* FOOTER */
     footer {
-      background: var(--charcoal); padding: 48px 72px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 24px;
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 3rem 2rem; text-align: center;
     }
-    .footer-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.1rem; color: var(--dim); }
-    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
-    .footer-links a { color: var(--dim); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { color: var(--dim); font-size: 0.72rem; }
-    .section-label { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.1; margin-bottom: 24px; }
-    .btn-gold { display: inline-block; background: var(--gold); color: #000; text-decoration: none; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 16px 40px; transition: opacity 0.2s; }
-    .btn-gold:hover { opacity: 0.88; }
-    .btn-outline { display: inline-block; border: 1px solid var(--border); color: var(--white); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 14px 36px; transition: border-color 0.2s, color 0.2s; }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-    @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      .nav-links { display: none; }
-      .hamburger { display: block; }
-      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--gold); margin-bottom: 1.5rem;
     }
-    @media (max-width: 600px) { footer { padding: 32px 20px; } }
-  
-    .page-hero { padding: 140px 72px 64px; background: var(--charcoal); border-bottom: 1px solid var(--border); }
-    h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; }
-    .gallery-body { padding: 72px 48px; max-width: 1400px; margin: 0 auto; }
-    .artist-section { margin-bottom: 72px; }
-    .artist-section-header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 20px; }
-    .artist-section-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.8rem; font-weight: 400; }
-    .artist-section-style { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
-    .masonry-grid { columns: 4; column-gap: 3px; }
-    .masonry-item { break-inside: avoid; margin-bottom: 3px; overflow: hidden; }
-    .masonry-item img { width: 100%; display: block; filter: brightness(0.85); transition: filter 0.3s; }
-    .masonry-item:hover img { filter: brightness(1); }
-    .artist-link { display: inline-block; margin-top: 16px; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: opacity 0.2s; }
-    .artist-link:hover { opacity: 0.7; }
-    @media (max-width: 900px) { .page-hero { padding: 120px 24px 48px; } .gallery-body { padding: 48px 16px; } .masonry-grid { columns: 2; } }
-    @media (max-width: 480px) { .masonry-grid { columns: 1; } }
-  </style>
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .footer-links a { color: var(--dim); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.08em; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { color: var(--dim); font-size: 0.75rem; }
+    /* Divider */
+    .gold-line { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 3rem; }
+    .text-gold { color: var(--gold); }
+    .text-dim { color: var(--dim); }
+    .mt-2 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 4rem; }
+    .text-center { text-align: center; }
+    .page-hero {
+      min-height: 40vh; display: flex; align-items: flex-end; padding: 4rem 2rem 3rem;
+      background-size: cover; background-position: center; position: relative;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,8,0,0.3), rgba(10,8,0,0.85));
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+</style>
 </head>
 <body>
-  
-  <nav>
-    <a href="./index.html" class="nav-logo">Golden Soul Tattoo</a>
-    <ul class="nav-links">
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./artists/index.html">Our Artists</a></li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./reviews.html">Reviews</a></li>
-      <li><a href="./booking.html">Book Now</a></li>
-    </ul>
-    <button class="hamburger" aria-label="Menu" onclick="this.classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-  <div class="mobile-menu">
-    <a href="./index.html">Home</a>
-    <a href="./artists/index.html">Our Artists</a>
-    <a href="./gallery.html">Gallery</a>
-    <a href="./reviews.html">Reviews</a>
-    <a href="./booking.html">Book Now</a>
+<nav>
+  <a class="nav-logo" href="./index.html">Golden Soul Tattoo</a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <ul class="nav-links">
+    <li><a href="./index.html">Inicio</a></li>
+    <li><a href="./artists/index.html">Artistas</a></li>
+    <li><a href="./gallery.html">Galería</a></li>
+    <li><a href="./reviews.html">Reseñas</a></li>
+    <li><a href="./booking.html">Reservar</a></li>
+  </ul>
+</nav>
+<a class="float-book" href="./booking.html">Reservar</a>
+<div class="page-hero" style="background-image: url('./img/google_2.jpg'); margin-top: 64px;">
+  <div class="page-hero-content container">
+    <p class="section-label">Portfolio</p>
+    <h1 style="font-family:'Cormorant Garamond',serif; font-size: clamp(3rem,7vw,6rem)">Galería</h1>
   </div>
-  <a href="./booking.html" class="book-float">Book Now</a>
-
-  <section class="page-hero">
-    <p class="section-label fade-up">Portfolio</p>
-    <h1 class="fade-up">Gallery</h1>
-  </section>
-
-  <div class="gallery-body">
+</div>
+<section>
+  <div class="container">
     
-    <div class="artist-section fade-up">
-      <div class="artist-section-header">
-        <div class="artist-section-name">Eduardo Gasamans</div>
-        <div class="artist-section-style">other</div>
-      </div>
-      <div class="masonry-grid">
-        
-        <div class="masonry-item">
-          <img src="../img/gasamans27_1.jpg" alt="Eduardo Gasamans tattoo" loading="lazy">
-        </div>
-
-        <div class="masonry-item">
-          <img src="../img/gasamans27_2.jpg" alt="Eduardo Gasamans tattoo" loading="lazy">
-        </div>
-      </div>
-      <a href="./artists/gasamans27.html" class="artist-link">View Eduardo Gasamans's full profile &#x2192;</a>
-    </div>
-
-    <div class="artist-section fade-up">
-      <div class="artist-section-header">
-        <div class="artist-section-name">gasa.tattoo</div>
-        <div class="artist-section-style">fine line</div>
-      </div>
-      <div class="masonry-grid">
-        
-        <div class="masonry-item">
-          <img src="../img/gasatattoo_1.jpg" alt="gasa.tattoo tattoo" loading="lazy">
-        </div>
-      </div>
-      <a href="./artists/gasatattoo.html" class="artist-link">View gasa.tattoo's full profile &#x2192;</a>
-    </div>
-
-    <div class="artist-section fade-up">
-      <div class="artist-section-header">
-        <div class="artist-section-name">german84717</div>
-        <div class="artist-section-style">fine line</div>
-      </div>
-      <div class="masonry-grid">
-        
-        <div class="masonry-item">
-          <img src="../img/german84717_1.jpg" alt="german84717 tattoo" loading="lazy">
-        </div>
-      </div>
-      <a href="./artists/german84717.html" class="artist-link">View german84717's full profile &#x2192;</a>
-    </div>
-
-    <div class="artist-section fade-up">
-      <div class="artist-section-header">
-        <div class="artist-section-name">annasalamandra</div>
-        <div class="artist-section-style">fine line</div>
-      </div>
-      <div class="masonry-grid">
-        
-        <div class="masonry-item">
-          <img src="../img/annasalamandra_1.jpg" alt="annasalamandra tattoo" loading="lazy">
-        </div>
-      </div>
-      <a href="./artists/annasalamandra.html" class="artist-link">View annasalamandra's full profile &#x2192;</a>
-    </div>
-
-    <div class="artist-section fade-up">
-      <div class="artist-section-header">
-        <div class="artist-section-name">ricar_do_re</div>
-        <div class="artist-section-style">fine line</div>
-      </div>
-      <div class="masonry-grid">
-        
-        <div class="masonry-item">
-          <img src="../img/ricardore_1.jpg" alt="ricar_do_re tattoo" loading="lazy">
-        </div>
-      </div>
-      <a href="./artists/ricardore.html" class="artist-link">View ricar_do_re's full profile &#x2192;</a>
-    </div>
   </div>
-
-  <footer>
-    <div class="footer-logo">Golden Soul Tattoo</div>
-    <div class="footer-links">
-      <a href="./index.html">Home</a>
-      <a href="./artists/index.html">Artists</a>
-      <a href="./gallery.html">Gallery</a>
-      <a href="./reviews.html">Reviews</a>
-      <a href="./booking.html">Book Now</a>
-    </div>
-    <div class="footer-copy">&#xa9; 2026 Golden Soul Tattoo</div>
-  </footer>
-  
-  <script>
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-    });
-  </script>
-</body>
-</html>
+</section>
+<footer>
+  <div class="footer-logo">Golden Soul Tattoo</div>
+  <div class="footer-links">
+    <a href="./index.html">Inicio</a>
+    <a href="./artists/index.html">Artistas</a>
+    <a href="./gallery.html">Galería</a>
+    <a href="./reviews.html">Reseñas</a>
+    <a href="./booking.html">Reservar</a>
+    <a href="https://www.instagram.com/goldensoultattoo/" target="_blank">Instagram</a>
+  </div>
+  <p class="footer-copy">© 2025 Golden Soul Tattoo · Ciudad de México</p>
+</footer>
+<script>
+  document.querySelectorAll('nav a').forEach(a => {
+    if(a.href === window.location.href) a.style.color = 'var(--gold)';
+  });
+</script>
+</body></html>
