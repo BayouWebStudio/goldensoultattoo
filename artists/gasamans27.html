@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gasamans 27 — Golden Soul Tattoo</title>
-  <meta name="description" content="Conoce a Gasamans 27, artista de Golden Soul Tattoo. Ver su portfolio y reservar una sesión.">
+  <title>Eduardo Gasamans — Artista | Golden Soul Tattoo</title>
+  <meta name="description" content="Portfolio de Eduardo Gasamans, artista de Golden Soul Tattoo en Ciudad de México.">
   <link rel="canonical" href="https://goldensoultattoo.com/artists/gasamans27.html">
-  <meta property="og:title" content="Gasamans 27 — Golden Soul Tattoo">
-  <meta property="og:description" content="Conoce a Gasamans 27, artista de Golden Soul Tattoo. Ver su portfolio y reservar una sesión.">
-  <meta property="og:image" content="https://goldensoultattoo.com/img/google_1.jpg">
+  <meta property="og:title" content="Eduardo Gasamans — Artista | Golden Soul Tattoo">
+  <meta property="og:description" content="Portfolio de Eduardo Gasamans, artista de Golden Soul Tattoo en Ciudad de México.">
+  <meta property="og:image" content="https://goldensoultattoo.com/img/gasamans27_1.jpg">
   <meta property="og:url" content="https://goldensoultattoo.com/artists/gasamans27.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --bg: #0a0800;
@@ -36,7 +37,6 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(10,8,0,0.92);
@@ -48,11 +48,8 @@
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--gold);
-      text-decoration: none;
-      letter-spacing: 0.05em;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--gold); text-decoration: none; letter-spacing: 0.05em;
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
@@ -60,14 +57,14 @@
       font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
     .nav-hamburger { display: none; cursor: pointer; background: none; border: none; color: var(--gold); font-size: 1.5rem; }
     @media (max-width: 768px) {
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(10,8,0,0.98); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid var(--border); }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
+        background: rgba(10,8,0,0.98); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid var(--border); }
       .nav-links.open { display: flex; }
       .nav-hamburger { display: block; }
     }
-    /* FLOATING BOOK BTN */
     .float-book {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
       background: var(--gold); color: #0a0800;
@@ -77,30 +74,21 @@
       transition: background 0.2s, transform 0.2s;
     }
     .float-book:hover { background: var(--gold-light); transform: translateY(-2px); }
-    /* SECTIONS */
     section { padding: 6rem 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label {
       font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 0.8rem;
     }
-    h1, h2, h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400; line-height: 1.2;
-    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.2; }
     h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem; }
-    /* GRID */
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     @media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
-    /* CARDS */
     .card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 2px;
+      overflow: hidden; transition: border-color 0.3s, transform 0.3s;
     }
     .card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
     .card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
@@ -109,32 +97,23 @@
     .card-body p { color: var(--dim); font-size: 0.85rem; }
     .card-link {
       display: inline-block; margin-top: 1rem;
-      color: var(--gold); font-size: 0.8rem; letter-spacing: 0.08em;
-      text-transform: uppercase; text-decoration: none;
+      color: var(--gold); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
     }
     .card-link:hover { color: var(--gold-light); }
-    /* HERO */
     .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; position: relative;
-      background-size: cover; background-position: center;
-      padding: 2rem;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; position: relative; background-size: cover; background-position: center; padding: 2rem;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(to bottom, rgba(10,8,0,0.5) 0%, rgba(10,8,0,0.3) 50%, rgba(10,8,0,0.85) 100%);
     }
     .hero-content { position: relative; z-index: 1; }
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 7rem);
-      color: var(--white); margin-bottom: 1rem;
-    }
+    .hero h1 { font-size: clamp(3rem, 8vw, 7rem); color: var(--white); margin-bottom: 1rem; }
     .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      color: var(--gold-light); font-style: italic;
-      margin-bottom: 2rem;
+      color: var(--gold-light); font-style: italic; margin-bottom: 2rem;
     }
     .hero-rating {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -146,46 +125,29 @@
       display: inline-block; padding: 0.9rem 2.5rem;
       background: var(--gold); color: #0a0800;
       font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: background 0.2s;
+      text-decoration: none; border: none; cursor: pointer; transition: background 0.2s;
     }
     .btn-primary:hover { background: var(--gold-light); }
     .btn-outline {
       display: inline-block; padding: 0.9rem 2.5rem;
       background: transparent; color: var(--gold);
       font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; border: 1px solid var(--gold);
-      transition: background 0.2s, color 0.2s;
+      text-decoration: none; border: 1px solid var(--gold); transition: background 0.2s, color 0.2s;
     }
     .btn-outline:hover { background: var(--gold-dim); }
-    /* GALLERY MASONRY */
-    .masonry {
-      columns: 3; column-gap: 1rem;
-    }
-    .masonry-item {
-      break-inside: avoid; margin-bottom: 1rem;
-      border: 1px solid var(--border); border-radius: 2px; overflow: hidden;
-    }
-    .masonry-item img { width: 100%; display: block; }
+    .masonry { columns: 3; column-gap: 1rem; }
+    .masonry-item { break-inside: avoid; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .masonry-item img { width: 100%; display: block; transition: opacity 0.3s; }
+    .masonry-item:hover img { opacity: 0.85; }
     @media (max-width: 900px) { .masonry { columns: 2; } }
     @media (max-width: 500px) { .masonry { columns: 1; } }
-    /* REVIEWS */
-    .review-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 2px; padding: 2rem;
-    }
-    .review-stars { color: var(--gold); margin-bottom: 0.8rem; letter-spacing: 0.1em; }
-    .review-text { color: var(--white); font-style: italic; margin-bottom: 1rem; }
+    .review-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 2px; padding: 2rem; }
+    .review-stars { color: var(--gold); margin-bottom: 0.8rem; letter-spacing: 0.1em; font-size: 1.1rem; }
+    .review-text { color: var(--white); font-style: italic; margin-bottom: 1rem; line-height: 1.8; }
     .review-author { color: var(--dim); font-size: 0.85rem; }
-    /* LOCATION */
-    .location-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    }
-    @media (max-width: 768px) { .location-grid { grid-template-columns: 1fr; } }
     .location-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
     .location-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
     .location-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.3rem; }
-    /* BOOKING FORM */
     .form-group { margin-bottom: 1.5rem; }
     .form-group label { display: block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.6rem; }
     .form-group input, .form-group textarea, .form-group select {
@@ -195,41 +157,28 @@
     }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
     .form-group textarea { min-height: 120px; resize: vertical; }
-    /* ARTIST PICKER */
     .artist-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
     @media (max-width: 768px) { .artist-picker { grid-template-columns: repeat(2, 1fr); } }
     .artist-pick-item { position: relative; }
     .artist-pick-item input[type=radio] { position: absolute; opacity: 0; }
-    .artist-pick-item label {
-      display: block; cursor: pointer; border: 2px solid var(--border);
-      border-radius: 2px; overflow: hidden; transition: border-color 0.2s;
-    }
+    .artist-pick-item label { display: block; cursor: pointer; border: 2px solid var(--border); border-radius: 2px; overflow: hidden; transition: border-color 0.2s; }
     .artist-pick-item input[type=radio]:checked + label { border-color: var(--gold); }
     .artist-pick-item label img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-    .artist-pick-item label span { display: block; padding: 0.5rem; font-size: 0.8rem; text-align: center; color: var(--dim); }
-    /* FOOTER */
-    footer {
-      background: var(--bg2); border-top: 1px solid var(--border);
-      padding: 3rem 2rem; text-align: center;
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; color: var(--gold); margin-bottom: 1.5rem;
-    }
+    .artist-pick-item label span { display: block; padding: 0.5rem; font-size: 0.8rem; text-align: center; color: var(--dim); background: var(--bg2); }
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 1.5rem; }
     .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .footer-links a { color: var(--dim); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.08em; }
     .footer-links a:hover { color: var(--gold); }
     .footer-copy { color: var(--dim); font-size: 0.75rem; }
-    /* Divider */
     .gold-line { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 3rem; }
     .text-gold { color: var(--gold); }
     .text-dim { color: var(--dim); }
     .mt-2 { margin-top: 2rem; }
-    .mb-4 { margin-bottom: 4rem; }
     .text-center { text-align: center; }
     .page-hero {
-      min-height: 40vh; display: flex; align-items: flex-end; padding: 4rem 2rem 3rem;
-      background-size: cover; background-position: center; position: relative;
+      min-height: 45vh; display: flex; align-items: flex-end; padding: 4rem 2rem 3rem;
+      background-size: cover; background-position: center; position: relative; margin-top: 64px;
     }
     .page-hero::before {
       content: ''; position: absolute; inset: 0;
@@ -251,46 +200,39 @@
   </ul>
 </nav>
 <a class="float-book" href="../booking.html">Reservar</a>
-<div class="page-hero" style="background-image: url('../img/google_1.jpg'); min-height: 60vh;">
+<div class="page-hero" style="background-image:url('../img/gasamans27_1.jpg');min-height:60vh">
   <div class="page-hero-content container">
     <p class="section-label">Artista</p>
-    <h1 style="font-family:'Cormorant Garamond',serif; font-size: clamp(3rem,7vw,6rem)">Gasamans 27</h1>
+    <h1 style="font-size:clamp(3rem,7vw,6rem)">Eduardo Gasamans</h1>
     <p style="color:var(--gold)">@gasamans_27</p>
   </div>
 </div>
-
 <section>
-  <div class="container" style="max-width: 800px;">
+  <div class="container" style="max-width:800px">
     <p class="section-label">Sobre el Artista</p>
     <h2>Mi Historia</h2>
     <div class="gold-line" style="margin-left:0"></div>
-    <div style="color: var(--dim); line-height: 1.9;">
-      <p style='margin-bottom:1.2rem'># Párrafos sobre Gasamans 27</p><p style='margin-bottom:1.2rem'>Soy un artista del tatuaje apasionado por transformar la piel en lienzo de expresión artística. Mi trabajo en Golden Soul Tattoo refleja mi compromiso con la excelencia y la creatividad en cada proyecto que realizo. Creo que el tatuaje es mucho más que tinta; es la manifestación de historias, emociones y visiones que merecen ser plasmadas con precisión y arte.</p><p style='margin-bottom:1.2rem'>Mi estilo único surge de la fusión entre técnica refinada y una visión artística sin límites. En cada sesión busco no solo crear un tatuaje, sino una obra que sea testimonio del vínculo entre el artista y quien porta el diseño. Desde Golden Soul Tattoo en Ciudad de México, continúo evolucionando mi craft, explorando nuevas posibilidades visuales y manteniéndome fiel a mi pasión por el arte que define mi carrera.</p>
-    </div>
-    <div class="mt-2" style="display:flex; gap:1rem; flex-wrap:wrap">
-      <a class="btn-primary" href="../booking.html?artist=gasamans27">Reservar con Gasamans</a>
+    <div style="color:var(--dim);line-height:1.9"><p style="margin-bottom:1.5rem">Soy Eduardo Gasamans, tatuador en Golden Soul Tattoo, y mi pasión es transformar la piel en lienzo donde convergen la técnica precisión y la expresión artística más profunda. Cada tatuaje que realizo es un diálogo entre el cliente y yo, donde escucho sus historias y las traduzco en tinta con respeto hacia el arte ancestral del tatuaje. Mi trabajo en la Ciudad de México refleja años de dedicación, investigación y perfeccionamiento de estilos que van desde lo clásico hasta lo contemporáneo, siempre buscando que cada marca permanezca como una obra de arte imperecedera en la piel.</p><p style="margin-bottom:1.5rem">En Golden Soul Tattoo, he creado un espacio donde el arte se respira en cada rincón, donde la calidad y la higiene son inquebrantables, y donde cada cliente encuentra no solo un tatuador, sino un artista comprometido con su visión. Mi estudio es el reflejo de mi filosofía: que el tatuaje es mucho más que una modificación corporal, es un acto de creación, identidad y libertad expresiva que trasciende el tiempo y las tendencias.</p></div>
+    <div class="mt-2" style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a class="btn-primary" href="../booking.html?artist=gasamans27">Reservar con Eduardo</a>
       <a class="btn-outline" href="https://www.instagram.com/gasamans_27/" target="_blank">Ver Instagram</a>
     </div>
   </div>
 </section>
-
-<section style="background: var(--bg2)">
+<section style="background:var(--bg2)">
   <div class="container">
     <p class="section-label text-center">Portfolio</p>
     <h2 class="text-center">Mi Trabajo</h2>
     <div class="gold-line"></div>
-    <div class="masonry">
-      <p style="color:var(--dim); text-align:center">Portfolio en construcción</p>
-    </div>
+    <div class="masonry"><div class="masonry-item"><img src="../img/gasamans27_1.jpg" loading="lazy" alt="Eduardo Gasamans 1"></div><div class="masonry-item"><img src="../img/gasamans27_2.jpg" loading="lazy" alt="Eduardo Gasamans 2"></div><div class="masonry-item"><img src="../img/gasamans27_3.jpg" loading="lazy" alt="Eduardo Gasamans 3"></div><div class="masonry-item"><img src="../img/gasamans27_4.jpg" loading="lazy" alt="Eduardo Gasamans 4"></div></div>
   </div>
 </section>
-
 <section>
-  <div class="container" style="text-align:center; max-width:600px">
+  <div class="container" style="text-align:center;max-width:600px">
     <p class="section-label">¿Listo?</p>
     <h2>Agenda tu Sesión</h2>
     <div class="gold-line"></div>
-    <p style="color:var(--dim); margin-bottom:2rem">Cuéntame sobre tu idea y crearemos algo extraordinario juntos.</p>
+    <p style="color:var(--dim);margin-bottom:2rem">Cuéntame sobre tu idea y crearemos algo extraordinario juntos.</p>
     <a class="btn-primary" href="../booking.html?artist=gasamans27">Hacer una Consulta</a>
   </div>
 </section>
@@ -304,11 +246,6 @@
     <a href="../booking.html">Reservar</a>
     <a href="https://www.instagram.com/goldensoultattoo/" target="_blank">Instagram</a>
   </div>
-  <p class="footer-copy">© 2025 Golden Soul Tattoo · Ciudad de México</p>
+  <p class="footer-copy">© 2025 Golden Soul Tattoo · Ciudad de México · Bismarck 21A, La Moderna</p>
 </footer>
-<script>
-  document.querySelectorAll('nav a').forEach(a => {
-    if(a.href === window.location.href) a.style.color = 'var(--gold)';
-  });
-</script>
 </body></html>
