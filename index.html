@@ -18,14 +18,19 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TattooParlor", "name": "Golden Soul Tattoo", "url": "https://goldensoultattoo.com/", "address": {"@type": "PostalAddress", "streetAddress": "Bismarck 21A", "addressLocality": "La Moderna", "addressCountry": "MX"}, "telephone": "56 2322 1714", "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5", "reviewCount": "105"}}</script>
   <style>
     :root {
-      --bg: #0a0800;
-      --bg2: #12100a;
+      --bg: #0D0B06;
+      --bg2: #151208;
+      --bg3: #1A170E;
       --gold: #C9A84C;
       --gold-light: #E8C76A;
+      --gold-warm: #D4B65E;
       --gold-dim: rgba(201,168,76,0.15);
+      --gold-glow: rgba(201,168,76,0.08);
       --white: #FDF8EE;
+      --cream: #E8DFD0;
       --dim: #9A8A6A;
       --border: rgba(201,168,76,0.12);
+      --border-hover: rgba(201,168,76,0.35);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -37,10 +42,13 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
+
+    /* ── Nav ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10,8,0,0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(13,11,6,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
       display: flex; align-items: center; justify-content: space-between;
@@ -55,25 +63,30 @@
     .nav-links a {
       color: var(--dim); text-decoration: none;
       font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
-      transition: color 0.2s;
+      transition: color 0.3s;
     }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
     .nav-hamburger { display: none; cursor: pointer; background: none; border: none; color: var(--gold); font-size: 1.5rem; }
     @media (max-width: 768px) {
       .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
-        background: rgba(10,8,0,0.98); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid var(--border); }
+        background: rgba(13,11,6,0.98); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid var(--border); }
       .nav-links.open { display: flex; }
       .nav-hamburger { display: block; }
     }
+
+    /* ── Float CTA ── */
     .float-book {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
-      background: var(--gold); color: #0a0800;
+      background: linear-gradient(135deg, var(--gold), var(--gold-warm));
+      color: #0D0B06;
       padding: 0.8rem 1.5rem; border-radius: 50px;
       font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
-      text-decoration: none; box-shadow: 0 4px 20px rgba(201,168,76,0.3);
-      transition: background 0.2s, transform 0.2s;
+      text-decoration: none; box-shadow: 0 4px 24px rgba(201,168,76,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .float-book:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .float-book:hover { transform: translateY(-2px); box-shadow: 0 6px 32px rgba(201,168,76,0.45); }
+
+    /* ── Layout ── */
     section { padding: 6rem 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label {
@@ -82,34 +95,57 @@
     }
     h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.2; }
     h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem; }
+
+    /* ── Grid ── */
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     @media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+    /* ── Cards ── */
     .card {
       background: var(--bg2); border: 1px solid var(--border); border-radius: 2px;
-      overflow: hidden; transition: border-color 0.3s, transform 0.3s;
+      overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
-    .card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.08);
+    }
     .card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
     .card-body { padding: 1.5rem; }
-    .card-body h3 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+    .card-body h3 { font-size: 1.4rem; margin-bottom: 0.3rem; color: var(--white); }
     .card-body p { color: var(--dim); font-size: 0.85rem; }
     .card-link {
       display: inline-block; margin-top: 1rem;
       color: var(--gold); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      transition: color 0.2s;
     }
     .card-link:hover { color: var(--gold-light); }
+
+    /* ── Hero ── */
     .hero {
       min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; position: relative; background-size: cover; background-position: center; padding: 2rem;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(10,8,0,0.5) 0%, rgba(10,8,0,0.3) 50%, rgba(10,8,0,0.85) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(13,11,6,0.6) 0%,
+        rgba(13,11,6,0.25) 40%,
+        rgba(13,11,6,0.4) 70%,
+        rgba(13,11,6,0.9) 100%
+      );
     }
     .hero-content { position: relative; z-index: 1; }
-    .hero h1 { font-size: clamp(3rem, 8vw, 7rem); color: var(--white); margin-bottom: 1rem; }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+    }
+    .hero h1 em { color: var(--gold-light); font-style: italic; }
     .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.1rem, 2.5vw, 1.6rem);
@@ -117,46 +153,69 @@
     }
     .hero-rating {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(201,168,76,0.1); border: 1px solid var(--border);
+      background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.2);
       padding: 0.5rem 1.2rem; border-radius: 50px; margin-bottom: 2rem;
       font-size: 0.85rem; color: var(--gold);
     }
+
+    /* ── Buttons ── */
     .btn-primary {
       display: inline-block; padding: 0.9rem 2.5rem;
-      background: var(--gold); color: #0a0800;
+      background: linear-gradient(135deg, var(--gold), var(--gold-warm));
+      color: #0D0B06;
       font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; border: none; cursor: pointer; transition: background 0.2s;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .btn-primary:hover { background: var(--gold-light); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(201,168,76,0.3); }
     .btn-outline {
       display: inline-block; padding: 0.9rem 2.5rem;
       background: transparent; color: var(--gold);
       font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; border: 1px solid var(--gold); transition: background 0.2s, color 0.2s;
+      text-decoration: none; border: 1px solid var(--gold); transition: background 0.3s, color 0.3s;
     }
     .btn-outline:hover { background: var(--gold-dim); }
+
+    /* ── Masonry Gallery ── */
     .masonry { columns: 3; column-gap: 1rem; }
-    .masonry-item { break-inside: avoid; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
-    .masonry-item img { width: 100%; display: block; transition: opacity 0.3s; }
-    .masonry-item:hover img { opacity: 0.85; }
+    .masonry-item {
+      break-inside: avoid; margin-bottom: 1rem;
+      border: 1px solid var(--border); border-radius: 2px; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .masonry-item:hover { border-color: var(--border-hover); }
+    .masonry-item img { width: 100%; display: block; transition: opacity 0.3s, transform 0.3s; }
+    .masonry-item:hover img { opacity: 0.9; transform: scale(1.02); }
     @media (max-width: 900px) { .masonry { columns: 2; } }
     @media (max-width: 500px) { .masonry { columns: 1; } }
-    .review-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 2px; padding: 2rem; }
+
+    /* ── Reviews ── */
+    .review-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 2px; padding: 2rem;
+      transition: border-color 0.3s;
+    }
+    .review-card:hover { border-color: var(--border-hover); }
     .review-stars { color: var(--gold); margin-bottom: 0.8rem; letter-spacing: 0.1em; font-size: 1.1rem; }
-    .review-text { color: var(--white); font-style: italic; margin-bottom: 1rem; line-height: 1.8; }
+    .review-text { color: var(--cream); font-style: italic; margin-bottom: 1rem; line-height: 1.8; }
     .review-author { color: var(--dim); font-size: 0.85rem; }
+
+    /* ── Location ── */
     .location-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
     .location-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
     .location-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.3rem; }
+
+    /* ── Forms ── */
     .form-group { margin-bottom: 1.5rem; }
     .form-group label { display: block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.6rem; }
     .form-group input, .form-group textarea, .form-group select {
       width: 100%; background: var(--bg2); border: 1px solid var(--border);
       color: var(--white); padding: 0.8rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.9rem;
-      outline: none; transition: border-color 0.2s; border-radius: 1px;
+      outline: none; transition: border-color 0.3s; border-radius: 1px;
     }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold-glow); }
     .form-group textarea { min-height: 120px; resize: vertical; }
+
+    /* ── Artist Picker ── */
     .artist-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
     @media (max-width: 768px) { .artist-picker { grid-template-columns: repeat(2, 1fr); } }
     .artist-pick-item { position: relative; }
@@ -165,42 +224,75 @@
     .artist-pick-item input[type=radio]:checked + label { border-color: var(--gold); }
     .artist-pick-item label img { width: 100%; aspect-ratio: 1; object-fit: cover; }
     .artist-pick-item label span { display: block; padding: 0.5rem; font-size: 0.8rem; text-align: center; color: var(--dim); background: var(--bg2); }
-    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 3rem 2rem; text-align: center;
+    }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 1.5rem; }
     .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .footer-links a { color: var(--dim); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.08em; }
+    .footer-links a { color: var(--dim); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.08em; transition: color 0.3s; }
     .footer-links a:hover { color: var(--gold); }
     .footer-copy { color: var(--dim); font-size: 0.75rem; }
-    .gold-line { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 3rem; }
+
+    /* ── Utilities ── */
+    .gold-line { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto 3rem; }
     .text-gold { color: var(--gold); }
     .text-dim { color: var(--dim); }
     .mt-2 { margin-top: 2rem; }
     .text-center { text-align: center; }
+
+    /* ── Subtle ambient glow ── */
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.4;
+    }
+    section + section { border-top: none; }
+
+    /* ── Schedule list ── */
+    .schedule-list { list-style: none; color: var(--dim); line-height: 2.2; }
+    .schedule-list li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+    }
+    .schedule-list li span:first-child { color: var(--cream); font-weight: 400; }
+
+    /* ── Page hero (subpages) ── */
     .page-hero {
       min-height: 45vh; display: flex; align-items: flex-end; padding: 4rem 2rem 3rem;
       background-size: cover; background-position: center; position: relative; margin-top: 64px;
     }
     .page-hero::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(10,8,0,0.3), rgba(10,8,0,0.85));
+      background: linear-gradient(to bottom, rgba(13,11,6,0.3), rgba(13,11,6,0.85));
     }
     .page-hero-content { position: relative; z-index: 1; }
-</style>
+  </style>
 </head>
 <body>
+
+<!-- ── Navigation ── -->
 <nav>
   <a class="nav-logo" href="./index.html">Golden Soul Tattoo</a>
   <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
   <ul class="nav-links">
-    <li><a href="./index.html">Inicio</a></li>
+    <li><a href="./index.html" class="active">Inicio</a></li>
     <li><a href="./artists/index.html">Artistas</a></li>
     <li><a href="./gallery.html">Galería</a></li>
     <li><a href="./reviews.html">Reseñas</a></li>
     <li><a href="./booking.html">Reservar</a></li>
   </ul>
 </nav>
+
+<!-- ── Floating CTA ── -->
 <a class="float-book" href="./booking.html">Reservar</a>
-<div class="hero" style="background-image: url('./img/german84717_1.jpg')">
+
+<!-- ── Hero ── -->
+<div class="hero" style="background-image: url('./img/google_1.jpg')">
   <div class="hero-content">
     <p class="section-label" style="font-size:0.75rem;letter-spacing:0.3em">Ciudad de México · Estudio Premium</p>
     <h1>Golden Soul<br><em>Tattoo</em></h1>
@@ -212,80 +304,85 @@
   </div>
 </div>
 
+<!-- ── About ── -->
 <section style="background: var(--bg2)">
   <div class="container">
     <div style="max-width:700px;margin:0 auto;text-align:center">
       <p class="section-label">Quiénes Somos</p>
       <h2>Más que un tatuaje,<br><em>una obra de arte</em></h2>
       <div class="gold-line"></div>
-      <p style="margin-bottom:1.5rem;color:var(--dim);line-height:1.9">En Golden Soul Tattoo, nosotros creemos que cada tatuaje es una obra de arte que trasciende la piel y toca el alma de quien lo lleva. Desde nuestro estudio ubicado en La Moderna, nos dedicamos apasionadamente a transformar las visiones e historias más profundas de nuestros clientes en diseños que perduran para toda la vida. Nuestra pasión por el arte del tatuaje no es simplemente un oficio, sino una vocación que nos impulsa a perfeccionar cada técnica, cada línea y cada color con devoción absoluta. Sabemos que cuando alguien decide tatuar su cuerpo, nos está confiando una parte importante de su identidad, y ese compromiso nos motiva a alcanzar la excelencia en cada proyecto que realizamos.</p><p style="margin-bottom:1.5rem;color:var(--dim);line-height:1.9">Nuestro equipo de artistas en Golden Soul Tattoo está comprometido con mantener los más altos estándares de calidad, higiene e innovación en el arte contemporáneo del tatuaje. Utilizamos únicamente materiales premium y técnicas avaladas internacionalmente, porque sabemos que la verdadera excelencia no admite compromisos. Cada cliente que cruza nuestras puertas en la Ciudad de México es parte de nuestra historia, y nosotros somos custodios de sus sueños artísticos. Trabajamos con el corazón abierto, la mente creativa y la destreza de artistas dedicados, porque creemos que el tatuaje es el medio perfecto para expresar la belleza, la fuerza y la esencia única que habita en cada persona.</p>
+      <p style="margin-bottom:1.5rem;color:var(--cream);line-height:1.9">En Golden Soul Tattoo, nosotros creemos que cada tatuaje es una obra de arte que trasciende la piel y toca el alma de quien lo lleva. Desde nuestro estudio ubicado en La Moderna, nos dedicamos apasionadamente a transformar las visiones e historias más profundas de nuestros clientes en diseños que perduran para toda la vida. Nuestra pasión por el arte del tatuaje no es simplemente un oficio, sino una vocación que nos impulsa a perfeccionar cada técnica, cada línea y cada color con devoción absoluta.</p>
+      <p style="margin-bottom:1.5rem;color:var(--cream);line-height:1.9">Nuestro equipo de artistas en Golden Soul Tattoo está comprometido con mantener los más altos estándares de calidad, higiene e innovación en el arte contemporáneo del tatuaje. Utilizamos únicamente materiales premium y técnicas avaladas internacionalmente, porque sabemos que la verdadera excelencia no admite compromisos. Cada cliente que cruza nuestras puertas en la Ciudad de México es parte de nuestra historia, y nosotros somos custodios de sus sueños artísticos.</p>
       <a class="btn-outline" href="./artists/index.html">Conoce a Nuestros Artistas</a>
     </div>
   </div>
 </section>
 
+<!-- ── Artists ── -->
 <section>
   <div class="container">
     <p class="section-label text-center">Nuestro Equipo</p>
     <h2 class="text-center">Los Artistas</h2>
     <div class="gold-line"></div>
     <div class="grid-3">
-    <div class="card">
-      <a href="./artists/annasalamandra.html">
-        <img src="./img/annasalamandra_1.jpg" alt="Ana Gámez" loading="lazy">
-      </a>
-      <div class="card-body">
-        <h3>Ana Gámez</h3>
-        <p>@annasalamandra</p>
-        <a class="card-link" href="./artists/annasalamandra.html">Ver artista →</a>
+      <div class="card">
+        <a href="./artists/annasalamandra.html">
+          <img src="./img/annasalamandra_1.jpg" alt="Ana Gámez — tattoo artist" loading="lazy">
+        </a>
+        <div class="card-body">
+          <h3>Ana Gámez</h3>
+          <p>@annasalamandra</p>
+          <a class="card-link" href="./artists/annasalamandra.html">Ver artista →</a>
+        </div>
+      </div>
+      <div class="card">
+        <a href="./artists/gasamans27.html">
+          <img src="./img/gasamans27_1.jpg" alt="Eduardo Gasamans — tattoo artist" loading="lazy">
+        </a>
+        <div class="card-body">
+          <h3>Eduardo Gasamans</h3>
+          <p>@gasamans_27</p>
+          <a class="card-link" href="./artists/gasamans27.html">Ver artista →</a>
+        </div>
+      </div>
+      <div class="card">
+        <a href="./artists/gasatattoo.html">
+          <img src="./img/gasatattoo_1.jpg" alt="Gasa Tattoo — tattoo artist" loading="lazy">
+        </a>
+        <div class="card-body">
+          <h3>Gasa Tattoo</h3>
+          <p>@gasa.tattoo</p>
+          <a class="card-link" href="./artists/gasatattoo.html">Ver artista →</a>
+        </div>
+      </div>
+      <div class="card">
+        <a href="./artists/german84717.html">
+          <img src="./img/german84717_1.jpg" alt="German Avila — tattoo artist" loading="lazy">
+        </a>
+        <div class="card-body">
+          <h3>German Avila</h3>
+          <p>@german84717</p>
+          <a class="card-link" href="./artists/german84717.html">Ver artista →</a>
+        </div>
+      </div>
+      <div class="card">
+        <a href="./artists/ricardore.html">
+          <img src="./img/ricardore_1.jpg" alt="Ricardo — tattoo artist" loading="lazy">
+        </a>
+        <div class="card-body">
+          <h3>Ricardo</h3>
+          <p>@ricar_do_re</p>
+          <a class="card-link" href="./artists/ricardore.html">Ver artista →</a>
+        </div>
       </div>
     </div>
-    <div class="card">
-      <a href="./artists/gasamans27.html">
-        <img src="./img/gasamans27_1.jpg" alt="Eduardo Gasamans" loading="lazy">
-      </a>
-      <div class="card-body">
-        <h3>Eduardo Gasamans</h3>
-        <p>@gasamans_27</p>
-        <a class="card-link" href="./artists/gasamans27.html">Ver artista →</a>
-      </div>
-    </div>
-    <div class="card">
-      <a href="./artists/gasatattoo.html">
-        <img src="./img/gasatattoo_1.jpg" alt="Gasa Tattoo" loading="lazy">
-      </a>
-      <div class="card-body">
-        <h3>Gasa Tattoo</h3>
-        <p>@gasa.tattoo</p>
-        <a class="card-link" href="./artists/gasatattoo.html">Ver artista →</a>
-      </div>
-    </div>
-    <div class="card">
-      <a href="./artists/german84717.html">
-        <img src="./img/german84717_1.jpg" alt="German Avila" loading="lazy">
-      </a>
-      <div class="card-body">
-        <h3>German Avila</h3>
-        <p>@german84717</p>
-        <a class="card-link" href="./artists/german84717.html">Ver artista →</a>
-      </div>
-    </div>
-    <div class="card">
-      <a href="./artists/ricardore.html">
-        <img src="./img/ricardore_1.jpg" alt="Ricardo" loading="lazy">
-      </a>
-      <div class="card-body">
-        <h3>Ricardo</h3>
-        <p>@ricar_do_re</p>
-        <a class="card-link" href="./artists/ricardore.html">Ver artista →</a>
-      </div>
-    </div></div>
     <div class="text-center mt-2">
       <a class="btn-outline" href="./artists/index.html">Ver Todos los Artistas</a>
     </div>
   </div>
 </section>
 
+<!-- ── Gallery ── -->
 <section style="background: var(--bg2)">
   <div class="container">
     <p class="section-label text-center">Portfolio</p>
@@ -293,69 +390,87 @@
     <div class="gold-line"></div>
     <div class="masonry">
       <div class="masonry-item">
-        <img src="./img/annasalamandra_1.jpg" alt="Annasalamandra tattoo" loading="lazy">
+        <img src="./img/annasalamandra_1.jpg" alt="Tatuaje por Anna Salamandra" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/annasalamandra_2.jpg" alt="Annasalamandra tattoo" loading="lazy">
+        <img src="./img/gasamans27_2.jpg" alt="Tatuaje por Eduardo Gasamans" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/annasalamandra_3.jpg" alt="Annasalamandra tattoo" loading="lazy">
+        <img src="./img/gasatattoo_3.jpg" alt="Tatuaje por Gasa Tattoo" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/gasamans27_1.jpg" alt="Eduardo Gasamans tattoo" loading="lazy">
+        <img src="./img/german84717_1.jpg" alt="Tatuaje por German Avila" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/gasamans27_2.jpg" alt="Eduardo Gasamans tattoo" loading="lazy">
+        <img src="./img/ricardore_2.jpg" alt="Tatuaje por Ricardo" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/gasamans27_3.jpg" alt="Eduardo Gasamans tattoo" loading="lazy">
+        <img src="./img/annasalamandra_3.jpg" alt="Tatuaje por Anna Salamandra" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/gasatattoo_1.jpg" alt="Gasa Tattoo tattoo" loading="lazy">
+        <img src="./img/gasamans27_1.jpg" alt="Tatuaje por Eduardo Gasamans" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/gasatattoo_2.jpg" alt="Gasa Tattoo tattoo" loading="lazy">
+        <img src="./img/gasatattoo_1.jpg" alt="Tatuaje por Gasa Tattoo" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/gasatattoo_3.jpg" alt="Gasa Tattoo tattoo" loading="lazy">
+        <img src="./img/german84717_3.jpg" alt="Tatuaje por German Avila" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/german84717_1.jpg" alt="German Avila tattoo" loading="lazy">
+        <img src="./img/ricardore_1.jpg" alt="Tatuaje por Ricardo" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/german84717_2.jpg" alt="German Avila tattoo" loading="lazy">
+        <img src="./img/annasalamandra_2.jpg" alt="Tatuaje por Anna Salamandra" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/german84717_3.jpg" alt="German Avila tattoo" loading="lazy">
+        <img src="./img/gasamans27_3.jpg" alt="Tatuaje por Eduardo Gasamans" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/ricardore_1.jpg" alt="Ricardo tattoo" loading="lazy">
+        <img src="./img/gasatattoo_2.jpg" alt="Tatuaje por Gasa Tattoo" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/ricardore_2.jpg" alt="Ricardo tattoo" loading="lazy">
+        <img src="./img/german84717_2.jpg" alt="Tatuaje por German Avila" loading="lazy">
       </div>
       <div class="masonry-item">
-        <img src="./img/ricardore_3.jpg" alt="Ricardo tattoo" loading="lazy">
+        <img src="./img/ricardore_3.jpg" alt="Tatuaje por Ricardo" loading="lazy">
       </div>
-    </div><div class="masonry-item"><img src="./img/gasamans27_1.jpg" loading="lazy"></div><div class="masonry-item"><img src="./img/gasamans27_2.jpg" loading="lazy"></div><div class="masonry-item"><img src="./img/gasatattoo_1.jpg" loading="lazy"></div><div class="masonry-item"><img src="./img/german84717_1.jpg" loading="lazy"></div><div class="masonry-item"><img src="./img/ricardore_1.jpg" loading="lazy"></div><div class="masonry-item"><img src="./img/annasalamandra_1.jpg" loading="lazy"></div><div class="masonry-item"><img src="./img/gasamans27_1.jpg" loading="lazy"></div></div>
+    </div>
     <div class="text-center mt-2">
       <a class="btn-outline" href="./gallery.html">Ver Galería Completa</a>
     </div>
   </div>
 </section>
 
+<!-- ── Reviews ── -->
 <section>
   <div class="container">
     <p class="section-label text-center">Lo Que Dicen</p>
     <h2 class="text-center">Reseñas de Clientes</h2>
     <div class="gold-line"></div>
-    <div class="grid-3"><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"🙌🏼"</p><p class="review-author">— Neon Glitter · 4 years ago</p></div><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Excellent place, excellent tattoo artists, excellent work environment, truly highly recommended."</p><p class="review-author">— Kevo Márquez · 3 months ago</p></div><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Excellent service from the black guy, he really nailed my tattoo, they're all super friendly and cool, I'll definitely be back for more 👹"</p><p class="review-author">— diana3001 · 3 months ago</p></div></div>
+    <div class="grid-3">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"🙌🏼"</p>
+        <p class="review-author">— Neon Glitter · hace 4 años</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excelente lugar, excelentes tatuadores, excelente ambiente de trabajo, de verdad muy recomendado."</p>
+        <p class="review-author">— Kevo Márquez · hace 3 meses</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excelente servicio, de verdad me quedó increíble mi tatuaje. Todos son super amables y buena onda, definitivamente regresaré por más 👹"</p>
+        <p class="review-author">— diana3001 · hace 3 meses</p>
+      </div>
+    </div>
     <div class="text-center mt-2">
       <a class="btn-outline" href="./reviews.html">Leer Todas las Reseñas</a>
     </div>
   </div>
 </section>
 
+<!-- ── Location & Contact ── -->
 <section style="background: var(--bg2)">
   <div class="container">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
@@ -365,11 +480,11 @@
         <div class="gold-line" style="margin-left:0"></div>
         <div class="location-item">
           <span class="location-icon">📍</span>
-          <div><p class="location-label">Dirección</p><p>Bismarck 21A, La moderna, Benito Juárez, 03510 Ciudad de México, CDMX, Mexico</p></div>
+          <div><p class="location-label">Dirección</p><p>Bismarck 21A, La Moderna, Benito Juárez, 03510 Ciudad de México, CDMX, Mexico</p></div>
         </div>
         <div class="location-item">
           <span class="location-icon">📞</span>
-          <div><p class="location-label">Teléfono</p><p><a href="tel:56 2322 1714" style="color:var(--white);text-decoration:none">56 2322 1714</a></p></div>
+          <div><p class="location-label">Teléfono</p><p><a href="tel:5623221714" style="color:var(--white);text-decoration:none">56 2322 1714</a></p></div>
         </div>
         <div class="location-item">
           <span class="location-icon">📸</span>
@@ -381,11 +496,21 @@
         <p class="section-label">Horarios</p>
         <h2>Atención</h2>
         <div class="gold-line" style="margin-left:0"></div>
-        <ul style="list-style:none;color:var(--dim);line-height:2.2"><li style='padding: 0.3rem 0; border-bottom: 1px solid var(--border)'>Monday: 11:00 AM – 9:00 PM</li><li style='padding: 0.3rem 0; border-bottom: 1px solid var(--border)'>Tuesday: 11:00 AM – 9:00 PM</li><li style='padding: 0.3rem 0; border-bottom: 1px solid var(--border)'>Wednesday: 11:00 AM – 9:00 PM</li><li style='padding: 0.3rem 0; border-bottom: 1px solid var(--border)'>Thursday: 11:00 AM – 9:00 PM</li><li style='padding: 0.3rem 0; border-bottom: 1px solid var(--border)'>Friday: 11:00 AM – 9:00 PM</li><li style='padding: 0.3rem 0; border-bottom: 1px solid var(--border)'>Saturday: 11:00 AM – 9:00 PM</li><li style='padding: 0.3rem 0; border-bottom: 1px solid var(--border)'>Sunday: 11:00 AM – 9:00 PM</li></ul>
+        <ul class="schedule-list">
+          <li><span>Lunes</span> <span>11:00 AM – 9:00 PM</span></li>
+          <li><span>Martes</span> <span>11:00 AM – 9:00 PM</span></li>
+          <li><span>Miércoles</span> <span>11:00 AM – 9:00 PM</span></li>
+          <li><span>Jueves</span> <span>11:00 AM – 9:00 PM</span></li>
+          <li><span>Viernes</span> <span>11:00 AM – 9:00 PM</span></li>
+          <li><span>Sábado</span> <span>11:00 AM – 9:00 PM</span></li>
+          <li><span>Domingo</span> <span>11:00 AM – 9:00 PM</span></li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ── Footer ── -->
 <footer>
   <div class="footer-logo">Golden Soul Tattoo</div>
   <div class="footer-links">
@@ -398,4 +523,6 @@
   </div>
   <p class="footer-copy">© 2025 Golden Soul Tattoo · Ciudad de México · Bismarck 21A, La Moderna</p>
 </footer>
-</body></html>
+
+</body>
+</html>
