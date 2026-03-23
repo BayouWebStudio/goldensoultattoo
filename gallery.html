@@ -185,7 +185,21 @@
       background: linear-gradient(to bottom, rgba(10,8,0,0.3), rgba(10,8,0,0.85));
     }
     .page-hero-content { position: relative; z-index: 1; }
-</style>
+
+    /* ── Lightbox ── */
+    /* ── Lightbox ── */
+  #lb{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.92)}
+  #lb.lb-open{display:flex}
+  #lb-overlay{position:absolute;inset:0;cursor:pointer}
+  #lb-img{position:relative;z-index:1;max-width:90vw;max-height:90vh;object-fit:contain;display:block;pointer-events:none;user-select:none}
+  #lb-close{position:fixed;top:1rem;right:1.5rem;z-index:2;background:none;border:none;color:#fff;font-size:2.2rem;cursor:pointer;opacity:.8;line-height:1;padding:.2rem .5rem}
+  #lb-close:hover{opacity:1}
+  #lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);z-index:2;background:rgba(0,0,0,.45);border:none;color:#fff;font-size:2.5rem;cursor:pointer;padding:.8rem .6rem;opacity:.75;user-select:none;line-height:1;border-radius:3px}
+  #lb-prev:hover,#lb-next:hover{opacity:1;background:rgba(0,0,0,.75)}
+  #lb-prev{left:.5rem}
+  #lb-next{right:.5rem}
+  @media(max-width:600px){#lb-prev,#lb-next{font-size:1.8rem;padding:.5rem .4rem}}
+  </style>
 </head>
 <body>
 <nav>
@@ -347,4 +361,68 @@
   </div>
   <p class="footer-copy">© 2025 Golden Soul Tattoo · Ciudad de México · Bismarck 21A, La Moderna</p>
 </footer>
+
+  <!-- Lightbox -->
+  <div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div id="lb-overlay"></div>
+    <img id="lb-img" src="" alt="Tattoo">
+    <button id="lb-close" aria-label="Close">&times;</button>
+    <button id="lb-prev" aria-label="Previous image">&#8249;</button>
+    <button id="lb-next" aria-label="Next image">&#8250;</button>
+  </div>
+  <script>
+  (function(){
+    var lb=document.getElementById('lb'),
+        lbImg=document.getElementById('lb-img'),
+        lbClose=document.getElementById('lb-close'),
+        lbPrev=document.getElementById('lb-prev'),
+        lbNext=document.getElementById('lb-next'),
+        lbOverlay=document.getElementById('lb-overlay'),
+        imgs=[],cur=0,startX=0;
+
+    document.querySelectorAll('.masonry-item img,.gallery-item img').forEach(function(img){
+      var idx=imgs.length;
+      imgs.push(img.src);
+      img.style.cursor='pointer';
+      var parent=img.parentElement;
+      if(parent.tagName==='A'){
+        parent.addEventListener('click',function(e){e.preventDefault();open(idx);});
+      } else {
+        img.addEventListener('click',function(){open(idx);});
+      }
+    });
+
+    function open(idx){
+      cur=idx;
+      lbImg.src=imgs[cur];
+      lb.classList.add('lb-open');
+      document.body.style.overflow='hidden';
+    }
+    function close(){
+      lb.classList.remove('lb-open');
+      document.body.style.overflow='';
+      lbImg.src='';
+    }
+    function prev(){cur=(cur-1+imgs.length)%imgs.length;lbImg.src=imgs[cur];}
+    function next(){cur=(cur+1)%imgs.length;lbImg.src=imgs[cur];}
+
+    lbClose.addEventListener('click',close);
+    lbOverlay.addEventListener('click',close);
+    lbPrev.addEventListener('click',function(e){e.stopPropagation();prev();});
+    lbNext.addEventListener('click',function(e){e.stopPropagation();next();});
+
+    document.addEventListener('keydown',function(e){
+      if(!lb.classList.contains('lb-open'))return;
+      if(e.key==='Escape')close();
+      if(e.key==='ArrowLeft')prev();
+      if(e.key==='ArrowRight')next();
+    });
+
+    lb.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+    lb.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-startX;
+      if(Math.abs(dx)>50){if(dx>0)prev();else next();}
+    },{passive:true});
+  })();
+  </script>
 </body></html>
