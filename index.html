@@ -524,5 +524,16 @@
   <p class="footer-copy">© 2025 Golden Soul Tattoo · Ciudad de México · Bismarck 21A, La Moderna</p>
 </footer>
 
+<script>
+(function(){
+  try {
+    fetch('https://curious-lemming-262.convex.site/api/analytics/pageview', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ slug: 'goldensoultattoo', page: window.location.pathname })
+    }).catch(function(){});
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
