@@ -285,18 +285,37 @@
   <p class="footer-copy">© 2025 Golden Soul Tattoo · Ciudad de México · Bismarck 21A, La Moderna</p>
 </footer>
 <script>
-function submitBooking(e) {
+async function submitBooking(e) {
   e.preventDefault();
-  const artist = document.querySelector('input[name=artist]:checked')?.value || 'Sin preferencia';
-  const name = document.getElementById('f-name').value;
-  const email = document.getElementById('f-email').value;
-  const phone = document.getElementById('f-phone').value;
-  const placement = document.getElementById('f-placement').value;
-  const vision = document.getElementById('f-vision').value;
-  const refs = document.getElementById('f-refs').value;
-  const subject = encodeURIComponent(`Consulta de Tatuaje - ${name} → ${artist}`);
-  const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\n\nArtista: ${artist}\nZona: ${placement}\n\nVisión:\n${vision}\n\nReferencias: ${refs}`);
-  window.location.href = `mailto:info@goldensoultattoo.com?subject=${subject}&body=${body}`;
+  var btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('.btn-primary');
+  var origText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  try {
+    var artist = (document.querySelector('input[name=artist]:checked') || {}).value || 'Sin preferencia';
+    var name = document.getElementById('f-name').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var phone = (document.getElementById('f-phone') || {}).value || '';
+    var service = artist;
+    var placement = (document.getElementById('f-placement') || {}).value || '';
+    var vision = document.getElementById('f-vision').value.trim();
+    var refs = (document.getElementById('f-refs') || {}).value || '';
+    var message = 'Zona: ' + placement + '\nVisión: ' + vision + (refs ? '\nReferencias: ' + refs : '');
+    if (!name || !email || !vision) { alert('Por favor llena los campos requeridos.'); btn.disabled = false; btn.textContent = origText; return; }
+    var res = await fetch('https://curious-lemming-262.convex.site/api/booking/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug: 'goldensoultattoo', name: name, email: email, phone: phone || undefined, service: service || undefined, message: message })
+    });
+    if (!res.ok) throw new Error('Network error');
+    e.target.reset();
+    btn.textContent = '✓ ¡Enviado!';
+    setTimeout(function() { btn.textContent = origText; btn.disabled = false; }, 3000);
+  } catch(err) {
+    alert('Algo salió mal. Inténtalo de nuevo.');
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
 }
 const params = new URLSearchParams(window.location.search);
 const ap = params.get('artist');
