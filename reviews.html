@@ -212,10 +212,56 @@
   <div class="container">
     <div class="grid-3"><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"🙌🏼"</p><p class="review-author">— Neon Glitter · 4 years ago</p></div><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Excellent place, excellent tattoo artists, excellent work environment, truly highly recommended."</p><p class="review-author">— Kevo Márquez · 3 months ago</p></div><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Excellent service from the black guy, he really nailed my tattoo, they're all super friendly and cool, I'll definitely be back for more 👹"</p><p class="review-author">— diana3001 · 3 months ago</p></div><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The service and attention I received was beyond excellent, from the initial quote to the completion of the tattoo. I was treated with professionalism at all times. The studio is clean and has a pleasant aroma. I am completely satisfied with their work. Unfortunately, I can't give"</p><p class="review-author">— Miguel Alcasio · 7 months ago</p></div><div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Excellent service and incredible work by Mau! The result exceeded all my expectations: the tattoo turned out spectacular, with great attention to detail. The dedication and professionalism are evident in every step of the process. I highly recommend both the tattoo artist and the"</p><p class="review-author">— pablo estrada · 10 months ago</p></div></div>
     <div class="text-center mt-2">
-      <a class="btn-outline" href="https://g.page/r/golden-soul-tattoo/review" target="_blank">Escribir una Reseña</a>
+      <a class="btn-outline" href="https://g.page/r/golden-soul-tattoo/review" target="_blank" style="margin-bottom:1rem;display:inline-block;">Escribir una Reseña en Google</a>
     </div>
   </div>
 </section>
+<section>
+  <div class="container" style="max-width:700px">
+    <p class="section-label">Comparte Tu Experiencia</p>
+    <h2>Deja Tu Reseña</h2>
+    <p style="color:var(--dim);margin-bottom:2rem">¿Te tatuaste en Golden Soul? Cuéntanos cómo fue tu experiencia.</p>
+    <form onsubmit="submitTestimonial(event)">
+      <div class="form-group">
+        <label for="r-name">Tu Nombre *</label>
+        <input type="text" id="r-name" required placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label for="r-body">Tu Experiencia *</label>
+        <textarea id="r-body" rows="5" required placeholder="Cuéntanos sobre tu sesión..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.85rem">Enviar Reseña</button>
+    </form>
+  </div>
+</section>
+<script>
+async function submitTestimonial(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('.btn-primary');
+  var origText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  try {
+    var name = document.getElementById('r-name').value.trim();
+    var body = document.getElementById('r-body').value.trim();
+    var rating = 5;
+    if (!name || !body) { alert('Por favor llena tu nombre y reseña.'); btn.disabled = false; btn.textContent = origText; return; }
+    var res = await fetch('https://curious-lemming-262.convex.site/api/testimonials/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug: 'goldensoultattoo', name: name, rating: rating, reviewText: body })
+    });
+    if (!res.ok) throw new Error('Network error');
+    e.target.reset();
+    btn.textContent = '✓ ¡Gracias!';
+    setTimeout(function() { btn.textContent = origText; btn.disabled = false; }, 3000);
+  } catch(err) {
+    alert('Algo salió mal. Inténtalo de nuevo.');
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
+}
+</script>
 <footer>
   <div class="footer-logo">Golden Soul Tattoo</div>
   <div class="footer-links">
