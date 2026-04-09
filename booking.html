@@ -187,25 +187,53 @@
     .page-hero-content { position: relative; z-index: 1; }
 
   .ref-upload { margin-top: 8px; }
-  .ref-upload-label { display: inline-block; padding: 8px 16px; background: transparent; border: 1px dashed rgba(255,255,255,0.15); color: var(--dim, #999); font-size: 0.8rem; border-radius: 6px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
-  .ref-upload-label:hover { border-color: var(--gold, #C9A84C); color: var(--gold, #C9A84C); }
+  
+  
   .ref-previews { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
   .ref-preview { position: relative; width: 64px; height: 64px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
   .ref-preview img { width: 100%; height: 100%; object-fit: cover; }
   .ref-preview-remove { position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; background: rgba(0,0,0,0.7); color: #fff; border: none; border-radius: 50%; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    @media (max-width: 600px) {  }
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
     .datetime-section { margin-bottom: 24px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border,#333); border-radius: 4px; }
     .datetime-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim,#999); margin-bottom: 12px; }
-    .datetime-row { display: flex; gap: 16px; }
-    .datetime-row .form-group { margin-bottom: 0; flex: 1; }
     .busy-slot { display: inline-block; background: rgba(200,50,50,0.15); color: #ff6b6b; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin: 2px 4px 2px 0; }
     .avail-ok { color: var(--gold,#C9A84C); }
     .avail-closed { color: #ff6b6b; }
-    input[type="date"], input[type="time"] { color-scheme: dark; }
-    @media (max-width: 600px) { .datetime-row { flex-direction: column; gap: 12px; } }
-  
-    .cal-wrap { flex: 1.4; }
+    .slot-btn { flex: 1; padding: 12px 16px; background: var(--charcoal,#1a1a1a); border: 1px solid var(--border,#333); color: var(--dim,#999); font-size: 0.82rem; font-weight: 500; cursor: pointer; border-radius: 4px; transition: all 0.2s; font-family: inherit; }
+    .slot-btn:hover { border-color: var(--gold,#C9A84C); color: var(--white,#fff); }
+    .slot-btn.slot-active { background: var(--gold,#C9A84C); color: #000; border-color: var(--gold,#C9A84C); font-weight: 600; }
+    .ref-upload-label { display: block; padding: 16px; border: 1px dashed var(--border,#333); border-radius: 4px; text-align: center; cursor: pointer; color: var(--dim,#999); font-size: 0.82rem; transition: border-color 0.2s; }
+    .ref-upload-label:hover { border-color: var(--gold,#C9A84C); color: var(--gold,#C9A84C); }
+    .ref-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border,#333); }
+    .ref-thumb-wrap { position: relative; display: inline-block; }
+    .ref-thumb-remove { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: #ff4444; color: #fff; border: none; border-radius: 50%; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; }
+    .cal-wrap { }
     .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
     .cal-header span { font-size: 0.85rem; font-weight: 600; color: var(--white,#fff); }
     .cal-header button { background: none; border: 1px solid var(--border,#333); color: var(--dim,#999); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
@@ -300,6 +328,29 @@
       <div class="form-group"><label>Tu Visión *</label><textarea id="f-vision" placeholder="Describe tu idea: estilo, tamaño, referencias, colores..." required></textarea></div>
       <div class="form-group"><label>Referencias / Links (opcional)</label><input type="text" id="f-refs" placeholder="Instagram, Pinterest, imágenes..."></div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
+<div class="datetime-section">
+            <p class="datetime-label">Preferred Date (optional)</p>
+            <input type="hidden" name="requestedDate" id="reqDate">
+            <input type="hidden" name="requestedTime" id="reqTime">
+            <div id="calWidget"></div>
+            <div id="availInfo" style="display:none;margin-top:10px;font-size:0.82rem;"></div>
+            <div id="slotPicker" style="display:none;margin-top:12px;">
+              <p style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim,#999);margin-bottom:8px;">Preferred Time</p>
+              <div style="display:flex;gap:10px;">
+                <button type="button" class="slot-btn" id="slotEarly" onclick="window.__pickSlot('early')">Morning / Early</button>
+                <button type="button" class="slot-btn" id="slotLate" onclick="window.__pickSlot('late')">Afternoon / Late</button>
+              </div>
+            </div>
+          </div>
+<div class="form-group">
+            <label>Reference Photos (optional)</label>
+            <label class="ref-upload-label">
+              <span>Click to upload photos</span>
+              <input type="file" id="refPhotoInput" accept="image/*" multiple style="display:none" onchange="window.__handleRefPhotos(this)">
+            </label>
+            <div id="refPreviews" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;"></div>
+          </div>
+
         <button class="btn-primary" type="submit" style="border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.85rem">Enviar Consulta</button>
         <a class="btn-outline" href="https://wa.me/525623221714?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank">WhatsApp Directo</a>
       </div>
@@ -308,14 +359,14 @@
             <div class="datetime-row">
               <div class="form-group">
                 <label>Date</label>
-                <input type="hidden" name="requestedDate" id="reqDate">
+                
               </div>
               <div class="form-group">
                 <label>Time</label>
-                <input type="time" id="reqTime" name="requestedTime" disabled>
+                
               </div>
             </div>
-            <div id="availInfo" style="display:none;margin-top:8px;font-size:0.82rem;"></div>
+            
           </div>
           </form>
   </div>
@@ -361,17 +412,7 @@ async var refPhotos = [];
             refPhotos.forEach(function(p, i) {
               c.innerHTML += '<div class="ref-preview"><img src="'+p+'" alt="Ref"><button class="ref-preview-remove" onclick="refPhotos.splice('+i+',1);renderRefPreviews();">&times;</button></div>';
             });
-            var label = document.querySelector('.ref-upload-label');
-            if (label) label.style.display = refPhotos.length >= 5 ? 'none' : '';
-          }
-          function submitBooking(e) {
-  e.preventDefault();
-  var btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('.btn-primary');
-  var origText = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-  try {
-    var artist = (document.querySelector('input[name=artist]:checked') || {}).value || 'Sin preferencia';
+            var label = document.querySelector(').value || 'Sin preferencia';
     var name = document.getElementById('f-name').value.trim();
     var email = document.getElementById('f-email').value.trim();
     var phone = (document.getElementById('f-phone') || {}).value || '';
@@ -401,51 +442,60 @@ const ap = params.get('artist');
 if (ap) { const el = document.getElementById(`pick_${ap}`); if (el) el.checked = true; }
 </script>
 
-
 <script>
 (function(){
-  var hidden=document.getElementById('reqDate');
-  var timeInput=document.getElementById('reqTime');
-  var availInfo=document.getElementById('availInfo');
-  var container=document.getElementById('calWidget');
-  if(!hidden||!container)return;
-  var today=new Date();today.setHours(0,0,0,0);
-  var vY=today.getFullYear(),vM=today.getMonth(),sel=null;
+  var hidden=document.getElementById('reqDate');var availInfo=document.getElementById('availInfo');
+  var container=document.getElementById('calWidget');if(!hidden||!container)return;
+  var today=new Date();today.setHours(0,0,0,0);var vY=today.getFullYear(),vM=today.getMonth(),sel=null;
   var DAYS=['Su','Mo','Tu','We','Th','Fr','Sa'];
   var MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  function pad(n){return n<10?'0'+n:''+n;}
-  function fmt(y,m,d){return y+'-'+pad(m+1)+'-'+pad(d);}
-  function render(){
-    var f=new Date(vY,vM,1),sd=f.getDay(),dim=new Date(vY,vM+1,0).getDate();
+  function pad(n){return n<10?'0'+n:''+n;}function fmt(y,m,d){return y+'-'+pad(m+1)+'-'+pad(d);}
+  function render(){var f=new Date(vY,vM,1),sd=f.getDay(),dim=new Date(vY,vM+1,0).getDate();
     var h='<div class="cal-header"><button type="button" onclick="window.__calPrev()">&#8249;</button><span>'+MO[vM]+' '+vY+'</span><button type="button" onclick="window.__calNext()">&#8250;</button></div><div class="cal-grid">';
     DAYS.forEach(function(d){h+='<div class="cal-dow">'+d+'</div>';});
     for(var i=0;i<sd;i++)h+='<div class="cal-day cal-empty"></div>';
-    for(var d=1;d<=dim;d++){
-      var ds=fmt(vY,vM,d),dO=new Date(vY,vM,d),past=dO<today,isT=dO.getTime()===today.getTime(),isS=sel===ds;
+    for(var d=1;d<=dim;d++){var ds=fmt(vY,vM,d),dO=new Date(vY,vM,d),past=dO<today,isT=dO.getTime()===today.getTime(),isS=sel===ds;
       var c='cal-day';if(past)c+=' cal-disabled';if(isT)c+=' cal-today';if(isS)c+=' cal-selected';
-      h+=past?'<div class="'+c+'">'+d+'</div>':'<div class="'+c+'" onclick="window.__calPick(\''+ds+'\')">'+d+'</div>';
-    }
-    h+='</div>';if(sel)h+='<div class="cal-selected-display">'+sel+'</div>';
-    container.innerHTML=h;
-  }
+      h+=past?'<div class="'+c+'">'+d+'</div>':'<div class="'+c+'" onclick="window.__calPick(\''+ds+'\')">'+d+'</div>';}
+    h+='</div>';if(sel)h+='<div class="cal-selected-display">'+sel+'</div>';container.innerHTML=h;}
   window.__calPrev=function(){vM--;if(vM<0){vM=11;vY--;}if(vY<today.getFullYear()||(vY===today.getFullYear()&&vM<today.getMonth())){vM=today.getMonth();vY=today.getFullYear();}render();};
   window.__calNext=function(){vM++;if(vM>11){vM=0;vY++;}var mx=new Date(today);mx.setMonth(mx.getMonth()+6);if(vY>mx.getFullYear()||(vY===mx.getFullYear()&&vM>mx.getMonth())){vM=mx.getMonth();vY=mx.getFullYear();}render();};
-  window.__calPick=async function(ds){
-    sel=ds;hidden.value=ds;render();
-    timeInput.disabled=true;timeInput.value='';
+  window.__calPick=async function(ds){sel=ds;hidden.value=ds;render();
+    var sp=document.getElementById('slotPicker');var th=document.getElementById('reqTime');
+    if(sp)sp.style.display='none';if(th)th.value='';
+    document.querySelectorAll('.slot-btn').forEach(function(b){b.classList.remove('slot-active');});
     availInfo.style.display='block';availInfo.innerHTML='<span style="color:var(--dim,#999)">Checking...</span>';
-    try{
-      var r=await fetch('https://curious-lemming-262.convex.site/api/booking/availability?slug=goldensoultattoo&date='+ds);
-      var data=await r.json();
+    try{var r=await fetch('https://curious-lemming-262.convex.site/api/booking/availability?slug=goldensoultattoo&date='+ds);var data=await r.json();
       if(!data.available){availInfo.innerHTML='<span class="avail-closed">'+(data.reason==='past'?'Past date':'Closed')+'</span>';return;}
-      timeInput.disabled=false;timeInput.setAttribute('min',data.workingHours.start);timeInput.setAttribute('max',data.workingHours.end);
-      var info='<span class="avail-ok">'+data.workingHours.start+' - '+data.workingHours.end+'</span>';
-      if(data.busySlots&&data.busySlots.length>0){info+='<br><span style="font-size:0.72rem;color:var(--dim,#999)">Booked:</span>';data.busySlots.forEach(function(s){info+=' <span class="busy-slot">'+s.start+'-'+s.end+'</span>';});}
-      if(data.fullDayBlocked){info='<span class="avail-closed">Fully booked</span>';timeInput.disabled=true;}
+      var info='<span class="avail-ok">Available</span>';
+      if(data.busySlots&&data.busySlots.length>0)info+=' <span style="font-size:0.72rem;color:var(--dim,#999)">('+data.busySlots.length+' appts)</span>';
+      if(data.fullDayBlocked){info='<span class="avail-closed">Fully booked</span>';}else if(sp){sp.style.display='block';}
       availInfo.innerHTML=info;
-    }catch(e){availInfo.innerHTML='';timeInput.disabled=false;}
-  };
+    }catch(e){availInfo.innerHTML='';if(sp)sp.style.display='block';}};
+  window.__pickSlot=function(slot){document.querySelectorAll('.slot-btn').forEach(function(b){b.classList.remove('slot-active');});
+    document.getElementById(slot==='early'?'slotEarly':'slotLate').classList.add('slot-active');
+    var th=document.getElementById('reqTime');if(th)th.value=slot==='early'?'09:00':'14:00';};
   render();
 })();
+(function(){
+  var photos=[];var maxP=5;window.__refPhotos=photos;
+  window.__handleRefPhotos=function(input){Array.from(input.files||[]).slice(0,maxP-photos.length).forEach(function(file){
+    if(file.size>10*1024*1024)return;var reader=new FileReader();reader.onload=function(e){
+      var img=new Image();img.onload=function(){var c=document.createElement('canvas');var mx=800,w=img.width,h=img.height;
+        if(w>mx||h>mx){if(w>h){h=Math.round(h*mx/w);w=mx;}else{w=Math.round(w*mx/h);h=mx;}}
+        c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);photos.push(c.toDataURL('image/jpeg',0.7));rp();};
+      img.src=e.target.result;};reader.readAsDataURL(file);});input.value='';};
+  function rp(){var c=document.getElementById('refPreviews');if(!c)return;c.innerHTML='';
+    photos.forEach(function(p,i){c.innerHTML+='<div class="ref-thumb-wrap"><img class="ref-thumb" src="'+p+'" alt="Ref"><button type="button" class="ref-thumb-remove" onclick="window.__removeRefPhoto('+i+')">\u00d7</button></div>';});
+    var l=document.querySelector('.ref-upload-label');if(l)l.style.display=photos.length>=maxP?'none':'';};
+  window.__removeRefPhoto=function(idx){photos.splice(idx,1);rp();};
+})();
+</script>
+<script>
+(function(){var of=window.fetch;window.fetch=function(u,o){if(typeof u==='string'&&u.includes('/api/booking/submit')&&o&&o.body){try{var b=JSON.parse(o.body);
+var rd=document.getElementById('reqDate');var rt=document.getElementById('reqTime');
+if(rd&&rd.value&&rt&&rt.value){b.requestedDate=rd.value;b.requestedTime=rt.value;}
+if(window.__refPhotos&&window.__refPhotos.length>0)b.referencePhotos=window.__refPhotos;
+o=Object.assign({},o,{body:JSON.stringify(b)});}catch(e){}}return of.apply(this,[u,o]);};})();
 </script>
 </body></html>
